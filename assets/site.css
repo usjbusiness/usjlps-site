@@ -46,7 +46,7 @@ section{position:relative}
 #pre .bar{width:140px;height:1px;background:rgba(201,165,76,.18);overflow:hidden}
 #pre .bar i{display:block;height:100%;width:100%;background:var(--gold);transform-origin:left;transform:scaleX(0);animation:load 1.5s var(--ease) forwards .2s}
 @keyframes load{to{transform:scaleX(1)}}
-#pre .cap{font:500 10px var(--sans);letter-spacing:.5em;color:var(--dim);text-transform:uppercase}
+#pre .cap{font:500 11px var(--sans);letter-spacing:.5em;color:var(--gold2);text-transform:uppercase}
 .done #pre .t{transform:translateY(-100%)}.done #pre .b{transform:translateY(100%)}
 .done #pre .mark{opacity:0;transform:scale(.9)}
 

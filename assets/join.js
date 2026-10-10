@@ -94,3 +94,72 @@
   })
   emailHint(); progress()
 })()
+;
+// connection network: members of every major linking up (same motif as the society dial)
+(function () {
+  var cv = document.getElementById('net'); if (!cv) return
+  var host = cv.parentElement, ctx = cv.getContext('2d'), reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
+  var LABELS = ['Nursing', 'Business', 'Psychology', 'Biology', 'Education', 'Computer Science', 'Social Work', 'Public Health', 'Chemistry', 'Communication', 'Accounting', 'Health Sciences']
+  var W, H, dpr, nodes = [], pulses = [], boxes = [], fr = 0, mouse = { x: -9999, y: -9999 }, raf, vis = true, R = 165
+  function init() {
+    dpr = Math.min(2, devicePixelRatio || 1); W = host.clientWidth; H = host.clientHeight
+    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    var mob = W < 700, n = Math.min(130, Math.max(40, Math.round(W * H / (mob ? 11000 : 14000)))); nodes = []
+    for (var i = 0; i < n; i++) {
+      var lab = i < LABELS.length && (!mob || i < 6) ? LABELS[i] : null
+      nodes.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25, r: lab ? 2.4 : Math.random() * 1.2 + .6, lab: lab, ph: Math.random() * 6.28 })
+    }
+    R = mob ? 120 : 165
+  }
+  function measure() {
+    var hr = host.getBoundingClientRect(); boxes = []
+    document.querySelectorAll('.intro h1, .intro .lead, .intro .eyebrow, .facts, .incl h5, .incl p, .incl i, .steps, .card').forEach(function (el) { var b = el.getBoundingClientRect(); if (b.width) boxes.push([b.left - hr.left - 14, b.top - hr.top - 10, b.right - hr.left + 14, b.bottom - hr.top + 10]) })
+  }
+  function covered(x, y) { for (var i = 0; i < boxes.length; i++) { var b = boxes[i]; if (x > b[0] && x < b[2] && y > b[1] && y < b[3]) return true } return false }
+  function draw(t) {
+    if (fr++ % 20 === 0) measure()
+    ctx.clearRect(0, 0, W, H)
+    var i, j, a, b, d
+    for (i = 0; i < nodes.length; i++) {
+      a = nodes[i]
+      if (!reduce) { a.x += a.vx; a.y += a.vy; if (a.x < -30) a.x = W + 30; if (a.x > W + 30) a.x = -30; if (a.y < -30) a.y = H + 30; if (a.y > H + 30) a.y = -30 }
+      var mx = mouse.x - a.x, my = mouse.y - a.y, md = Math.hypot(mx, my); if (md < 220) { a.x += mx * .0018; a.y += my * .0018 }
+    }
+    for (i = 0; i < nodes.length; i++) {
+      a = nodes[i]
+      for (j = i + 1; j < nodes.length; j++) {
+        b = nodes[j]; d = Math.hypot(a.x - b.x, a.y - b.y)
+        if (d < R) {
+          var k = 1 - d / R, hot = a.lab || b.lab
+          ctx.strokeStyle = 'rgba(201,165,76,' + (k * (hot ? .55 : .34)) + ')'; ctx.lineWidth = hot ? .9 : .7
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke()
+          if (!reduce && hot && k > .35 && Math.random() < .004 && pulses.length < 28) pulses.push({ a: a, b: b, p: 0 })
+        }
+      }
+      var dm = Math.hypot(a.x - mouse.x, a.y - mouse.y)
+      if (dm < 220) { ctx.strokeStyle = 'rgba(240,220,160,' + ((1 - dm / 220) * .6) + ')'; ctx.lineWidth = .8; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke() }
+    }
+    // light travelling along a connection
+    for (i = pulses.length - 1; i >= 0; i--) {
+      var q = pulses[i]; q.p += .012
+      if (q.p >= 1 || Math.hypot(q.a.x - q.b.x, q.a.y - q.b.y) > R) { pulses.splice(i, 1); continue }
+      var px = q.a.x + (q.b.x - q.a.x) * q.p, py = q.a.y + (q.b.y - q.a.y) * q.p
+      var g = ctx.createRadialGradient(px, py, 0, px, py, 9); g.addColorStop(0, 'rgba(255,240,195,.95)'); g.addColorStop(1, 'rgba(201,165,76,0)')
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(px, py, 9, 0, 6.283); ctx.fill()
+    }
+    ctx.textAlign = 'left'
+    for (i = 0; i < nodes.length; i++) {
+      a = nodes[i]; var tw = a.lab ? .8 + .2 * Math.sin(t / 700 + a.ph) : .75
+      if (a.lab) { var gg = ctx.createRadialGradient(a.x, a.y, 0, a.x, a.y, 16); gg.addColorStop(0, 'rgba(201,165,76,' + (.5 * tw) + ')'); gg.addColorStop(1, 'rgba(201,165,76,0)'); ctx.fillStyle = gg; ctx.beginPath(); ctx.arc(a.x, a.y, 16, 0, 6.283); ctx.fill() }
+      ctx.fillStyle = 'rgba(240,222,168,' + tw + ')'; ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, 6.283); ctx.fill()
+      if (a.lab && !covered(a.x, a.y) && !covered(a.x + 120, a.y)) { ctx.font = '500 10px Inter, sans-serif'; ctx.letterSpacing = '2.5px'; ctx.fillStyle = 'rgba(233,212,154,' + (.75 * tw) + ')'; ctx.fillText(a.lab.toUpperCase(), a.x + 9, a.y + 3.5); ctx.letterSpacing = '0px' }
+    }
+    if (!reduce && vis) raf = requestAnimationFrame(draw)
+  }
+  init(); requestAnimationFrame(function (t) { draw(t); cv.classList.add('on') })
+  var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { init(); if (reduce) draw(0) }, 150) })
+  addEventListener('mousemove', function (e) { var r = host.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top })
+  document.addEventListener('mouseleave', function () { mouse.x = mouse.y = -9999 })
+  if (window.ResizeObserver) new ResizeObserver(function () { if (Math.abs(host.clientHeight - H) > 40) init() }).observe(host)
+  new IntersectionObserver(function (en) { vis = en[0].isIntersecting; cancelAnimationFrame(raf); if (vis && !reduce) raf = requestAnimationFrame(draw) }).observe(host)
+})();

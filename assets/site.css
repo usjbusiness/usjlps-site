@@ -422,3 +422,8 @@ nav.links{margin:0 28px}
 .leads p{color:var(--mute);font-size:14.5px;max-width:380px}
 @media (max-width:1000px){.pcgrid{grid-template-columns:repeat(2,1fr);gap:20px}.leads{grid-column:1/-1}}
 @media (max-width:520px){.pc h5{font-size:22px}.pc .ro{font-size:9.5px;letter-spacing:.12em}}
+
+.navtxt{font:400 10px var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--mute);padding:0 6px;transition:color .3s}.navtxt:hover{color:var(--gold)}
+@media (max-width:1180px){.navtxt{display:none}}
+#menu a.sm{font-size:26px;color:var(--mute)}
+.pbtns{display:flex;gap:14px;flex-wrap:wrap}

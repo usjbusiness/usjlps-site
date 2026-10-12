@@ -81,7 +81,11 @@ $$('.rv,.mask,.rule,.sechead,#rrow,.card,#phones').forEach(el=>io.observe(el));
 // counters
 const co=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;co.unobserve(e.target);const el=e.target,to=+el.dataset.count,pad=+el.dataset.pad||0,from=to>1000?1900:0,t0=performance.now(),d=2200;
 const tick=t=>{const k=Math.min(1,(t-t0)/d),v=Math.round(from+(to-from)*(1-Math.pow(1-k,4)));el.textContent=String(v).padStart(pad,'0');if(k<1)requestAnimationFrame(tick)};requestAnimationFrame(tick)}),{threshold:.6});
-$$('[data-count]').forEach(el=>co.observe(el));
+const startCounts=()=>$$('[data-count]').forEach(el=>co.observe(el));
+/* Live numbers from the LPS portal database (counts only). Falls back to the numbers in the HTML. */
+(()=>{let done=false;const go=()=>{if(!done){done=true;startCounts()}};setTimeout(go,1500);
+try{fetch('https://ftwjthakbeuitorrlkzf.supabase.co/rest/v1/rpc/site_stats',{method:'POST',headers:{apikey:'sb_publishable_DzVu1_EyoFnWQYfcPw0R4A_ZdNYOjno','Content-Type':'application/json'},body:'{}'})
+.then(r=>r.ok?r.json():null).then(s=>{if(s)$$('[data-live]').forEach(el=>{const n=+s[el.dataset.live];if(n>0){el.dataset.count=n;if(done)el.textContent=String(n).padStart(+el.dataset.pad||0,'0')}})}).catch(()=>{}).finally(go)}catch(e){go()}})();
 // words
 const wp=$('#words');if(wp){const walk=n=>{[...n.childNodes].forEach(c=>{if(c.nodeType==3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(t=>{if(/^\s+$/.test(t)||!t)f.append(t);else{const s=document.createElement('span');s.className='w';s.textContent=t;f.append(s)}});c.replaceWith(f)}else walk(c)})};walk(wp)}
 const ws=wp?$$('.w',wp):[];

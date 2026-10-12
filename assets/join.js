@@ -2,7 +2,8 @@
   var API = 'https://ftwjthakbeuitorrlkzf.supabase.co/rest/v1/rpc/submit_member_application'
   var KEY = 'sb_publishable_DzVu1_EyoFnWQYfcPw0R4A_ZdNYOjno'
   var INTERESTS = ['Leadership', 'Public Speaking', 'Networking', 'Career Readiness', 'Simulations', 'Entrepreneurship', 'Healthcare', 'Business & Finance', 'Tech & Data', 'Media & Marketing', 'Education', 'Community Impact']
-  var MAJORS = ['Accounting', 'Biology', 'Business Administration', 'Chemistry', 'Communication & Media', 'Computer Science', 'Data Science', 'Economics', 'Education', 'English', 'Finance', 'Health Sciences', 'History', 'Management', 'Marketing', 'Mathematics', 'Nursing', 'Nutrition', 'Pharmacy', 'Philosophy', 'Political Science', 'Psychology', 'Public Health', 'Social Work', 'Sociology', 'Sport Management', 'Undeclared']
+  // Official USJ undergraduate majors (usj.edu/academics/undergraduate-programs). Same list as public.lps_major_list() in the portal database.
+  var MAJORS = ['Accounting', 'Biochemistry', 'Biology', 'Chemistry', 'Child Study', 'Computer Science', 'Criminal Justice and Restorative Justice', 'Digital Media and Communication', 'Elementary Education', 'English', 'Environmental Science', 'Exercise Science', 'Health Science', 'History', 'Management (Business)', 'Mathematics', 'Nursing', 'Nutrition', 'Pharmacy', 'Political Science', 'Psychology', 'Public Health', 'Religious Studies', 'Secondary Education', 'Social Work', 'Spanish', 'Special Education', 'Sport Management and Promotion', 'Exploratory (Undecided)']
   var started = Date.now(), sending = false
   var form = document.getElementById('join-form'), err = document.getElementById('error'), btn = document.getElementById('submit')
   var EMAIL_OK = /^[a-z0-9._%+-]+@(my\.)?usj\.edu$/, NAME_BAD = /[0-9<>@\/\\:;{}=_*#$%^&|~"]/
@@ -14,8 +15,10 @@
     var s = document.createElement('span'); s.textContent = name
     l.appendChild(i); l.appendChild(s); chips.appendChild(l)
   })
-  var dl = document.getElementById('majors')
-  MAJORS.forEach(function (m) { var o = document.createElement('option'); o.value = m; dl.appendChild(o) })
+  var ms = document.getElementById('major'), mo = document.getElementById('major-other-wrap')
+  MAJORS.concat(['Other (not listed)']).forEach(function (m) { var o = document.createElement('option'); o.value = m; o.textContent = m; ms.appendChild(o) })
+  ms.addEventListener('change', function () { mo.style.display = ms.value === 'Other (not listed)' ? '' : 'none'; if (mo.style.display === '') mo.querySelector('input').focus() })
+  function majorValue() { return ms.value === 'Other (not listed)' ? clean(form.elements.major_other.value) : ms.value }
   var gy = document.getElementById('grad-year'), y = new Date().getFullYear()
   for (var k = y; k <= y + 4; k++) { var o = document.createElement('option'); o.value = k; o.textContent = 'Class of ' + k; gy.appendChild(o) }
 
@@ -26,7 +29,7 @@
   function clean(v) { return v.trim().replace(/\s+/g, ' ') }
   function progress() {
     var req = [!!clean(f.first_name.value), !!clean(f.last_name.value), EMAIL_OK.test(f.email.value.trim().toLowerCase()), f.eligible.checked]
-    var extra = [!!f.major.value.trim(), !!f.grad_year.value, !!form.querySelector('input[name=interests]:checked')]
+    var extra = [!!majorValue(), !!f.grad_year.value, !!form.querySelector('input[name=interests]:checked')]
     var n = req.filter(Boolean).length * 2 + extra.filter(Boolean).length, pct = Math.round(n / 11 * 100)
     pt.textContent = pct + '%'; pb.style.width = pct + '%'
   }
@@ -67,7 +70,7 @@
     var interests = Array.prototype.slice.call(form.querySelectorAll('input[name=interests]:checked')).map(function (i) { return i.value })
     var body = {
       p_first_name: first, p_last_name: last, p_email: email,
-      p_major: clean(f.major.value) || null, p_grad_year: f.grad_year.value ? parseInt(f.grad_year.value, 10) : null,
+      p_major: majorValue() || null, p_grad_year: f.grad_year.value ? parseInt(f.grad_year.value, 10) : null,
       p_interests: interests, p_heard_from: f.heard_from.value || null, p_message: f.message.value.trim() || null,
       p_client: client || null, p_website: f.website.value || null, p_elapsed_ms: Date.now() - started
     }

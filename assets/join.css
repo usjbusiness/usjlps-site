@@ -214,3 +214,28 @@ legend .opt{margin-left:4px}
 @media (max-width:620px){.ctop{flex-direction:column;gap:14px}.prog{justify-items:start}.ctop h2{font-size:32px}.facts b{font-size:30px}}
 
 .dnote{margin-top:22px;font-size:13px;line-height:1.6;color:rgba(243,237,226,.6)}.dnote a{color:var(--gold,#C9A54C);text-decoration:underline;text-underline-offset:3px}
+/* Editorial v6: retain application logic, improve clarity and reduce effects. */
+:root{--ink:#0b0d0c;--ivory:#f4f0e7;--mute:#b4b5aa;--dim:#a1a396}
+.grain,.net,.bg .glow{display:none!important}
+body{font-weight:400}.eyebrow{font-size:14px;letter-spacing:.12em;line-height:1.5}
+.brand span{font:400 23px/1.2 var(--serif);letter-spacing:.12em}.brand span i{display:none}
+.back{font-size:14px;letter-spacing:0;text-transform:none;min-height:44px}
+.card{background:#131713;border-radius:8px;box-shadow:none}
+.facts span,.steps span{font-size:14px;letter-spacing:0;text-transform:none;color:var(--mute)}
+.steps b{font-size:14px}.incl p{font-size:14px}
+.ctop{align-items:flex-start}.ctop .csub,.csub{font-size:14px}.prog{min-width:56px}.prog span{font-size:14px;letter-spacing:0}.prog .bar{width:56px}
+legend{font-size:14px;letter-spacing:.06em;flex-wrap:wrap;line-height:1.5}
+.fld>span{font-size:14px;letter-spacing:0;text-transform:none;line-height:1.5}
+.req,.opt{font-size:14px!important;letter-spacing:0!important;text-transform:none!important;font-style:normal}
+.hint,.privacy,.jf,.jf a,legend small,.fld small,.error,.check{font-size:14px!important;letter-spacing:0}
+.chips button{min-height:44px}.btn{font-size:14px;letter-spacing:0;text-transform:none;min-height:52px}
+.jf{line-height:1.6}.jf .wrap{flex-wrap:wrap;gap:16px}
+@media(max-width:600px){.jh .brand span{display:block;font-size:22px}.jh .brand span i{display:none}.eyebrow{letter-spacing:.08em}.ctop{gap:16px}.ctop .prog{min-width:56px}.facts li+li{padding-left:12px}}
+.fld input,.fld textarea,.fld select{background:#1b211c;border-color:#727865;color:#f4f0e7}
+.fld input::placeholder,.fld textarea::placeholder{color:#abae9f}
+.fld input:focus,.fld textarea:focus,.fld select:focus{border-color:#c9a54c}
+.fld.invalid input,.fld.invalid select,.fld.invalid textarea{border-color:#e56458}
+.chips button{border-color:#727865}.btn:focus-visible,.back:focus-visible{outline:2px solid #e7d6a7;outline-offset:4px}
+.chip span{min-height:44px;font-size:14px;border-color:#727865}
+.fnote{font-size:14px;color:#b4b5aa}
+.fine,.dnote,.jf span{font-size:14px;letter-spacing:0;line-height:1.6;color:#b4b5aa}

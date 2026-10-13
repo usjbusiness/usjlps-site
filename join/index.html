@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Apply · USJ Leadership &amp; Professional Society</title>
+<meta name="description" content="Apply to the USJ Leadership &amp; Professional Society. Free, open to every University of Saint Joseph undergraduate, any major. Takes about two minutes.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icon-32.png">
+<link rel="apple-touch-icon" href="/assets/img/icon-180.png">
+<meta property="og:title" content="Apply · USJ Leadership &amp; Professional Society">
+<meta property="og:image" content="https://usjlps.org/assets/img/share.png">
+<meta property="og:url" content="https://usjlps.org/join">
+<link rel="stylesheet" href="/assets/join.css">
+</head>
+<body>
+<div class="grain"></div>
+<header class="jh"><div class="wrap">
+  <a href="/" class="brand"><div class="m"></div><span><b>USJ · LPS</b><i>Leadership &amp; Professional Society</i></span></a>
+  <a href="/" class="back"><span class="arr l"></span>Back to site</a>
+</div></header>
+
+<main class="join-page">
+  <div class="bg"><div class="glow"></div><div class="ivy"></div></div><canvas id="net" class="net" aria-hidden="true"></canvas>
+  <div class="wrap jgrid">
+    <aside class="intro">
+      <div class="eyebrow">Membership · Fall 2026</div>
+      <h1>Apply to the<br><em class="goldtext">Society.</em></h1>
+      <p class="lead">One society for every major. Skills, a real network and a path to leadership, built by students at the University of Saint Joseph.</p>
+      <ul class="facts"><li><b>Free</b><span>No dues</span></li><li><b>2 min</b><span>To apply</span></li><li><b>All</b><span>Majors welcome</span></li></ul>
+      <div class="incl">
+        <div class="eyebrow dim">Membership includes</div>
+        <ol>
+          <li><i>I</i><div><h5>Headliner Series</h5><p>Leaders in the room, with Q&amp;A and meet-and-greets.</p></div></li>
+          <li><i>II</i><div><h5>Simulations &amp; labs</h5><p>Real decisions, interview practice and your personal brand.</p></div></li>
+          <li><i>III</i><div><h5>Ranks &amp; rewards</h5><p>Earn stickers at events and unlock merch, certificates and trips.</p></div></li>
+          <li><i>IV</i><div><h5>Member portal</h5><p>Every session, live voting and your rank, on your phone.</p></div></li>
+        </ol>
+      </div>
+      <div class="path"><div class="eyebrow dim">What happens next</div>
+        <div class="steps"><div class="on"><b>01</b><span>Apply</span></div><div><b>02</b><span>E-board review</span></div><div><b>03</b><span>Welcome email</span></div><div><b>04</b><span>Portal access</span></div></div>
+      </div>
+    </aside>
+
+    <section class="card" aria-live="polite">
+      <div id="form-view">
+        <div class="ctop"><div><span class="eyebrow">Application</span><h2>Become a member</h2><p class="csub">Only 4 things are required. Everything marked <em class="opt">Optional</em> can be skipped.</p></div><div class="prog" aria-hidden="true"><span id="prog-txt">0%</span><div class="bar"><i id="prog-bar"></i></div></div></div>
+        <form id="join-form" novalidate autocomplete="on">
+          <fieldset><legend><i>I</i>About you</legend>
+            <div class="row2">
+              <label class="fld"><span>First name <em class="req">Required</em></span><input name="first_name" autocomplete="given-name" maxlength="60" required></label>
+              <label class="fld"><span>Last name <em class="req">Required</em></span><input name="last_name" autocomplete="family-name" maxlength="60" required></label>
+            </div>
+            <label class="fld"><span>USJ email <em class="req">Required</em></span><input name="email" type="email" inputmode="email" autocomplete="email" placeholder="jsmith@my.usj.edu" maxlength="120" required><em class="hint" id="email-hint">Use your @my.usj.edu or @usj.edu address.</em></label>
+          </fieldset>
+          <fieldset><legend><i>II</i>Your studies</legend>
+            <div class="row2">
+              <label class="fld sel"><span>Major <em class="opt">Optional</em></span><select name="major" id="major"><option value="">Select your major</option></select></label>
+              <label class="fld sel"><span>Class year <em class="opt">Optional</em></span><select name="grad_year" id="grad-year"><option value="">Select</option></select></label>
+            </div>
+            <label class="fld" id="major-other-wrap" style="display:none"><span>Your major <em class="opt">Not on the list</em></span><input name="major_other" maxlength="100" placeholder="Type your major"></label>
+          </fieldset>
+          <fieldset><legend><i>III</i>What interests you <em class="opt">Optional · pick any</em></legend>
+            <div class="chips" id="chips"></div>
+          </fieldset>
+          <fieldset><legend><i>IV</i>One more thing</legend>
+            <label class="fld sel"><span>How did you hear about us? <em class="opt">Optional</em></span><select name="heard_from"><option value="">Select</option><option>Instagram</option><option>A friend</option><option>Class or professor</option><option>Campus event or tabling</option><option>Office of Career Development</option><option>Flyer or poster</option><option>Other</option></select></label>
+            <label class="fld"><span>Anything you'd like us to know? <em class="opt">Optional</em></span><textarea name="message" rows="3" maxlength="1000" placeholder="An event you'd love, a guest you'd invite, a skill you want to grow…"></textarea><em class="hint right"><span id="msg-count">0</span> / 1000</em></label>
+            <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+            <label class="check"><input type="checkbox" name="eligible" required><span class="box"></span><span>I am a current undergraduate student at the University of Saint Joseph. <em class="req">Required</em></span></label>
+          </fieldset>
+          <div class="error" id="error" role="alert"></div>
+          <button class="btn solid submit" id="submit" type="submit"><span class="lbl">Send Application</span><span class="arr"></span><span class="spin" aria-hidden="true"></span></button>
+          <p class="fine">We only use your information to review your application and contact you about LPS. No spam, ever.</p>
+        </form>
+      </div>
+
+      <div id="done-view" hidden>
+        <div class="seal"><div class="m"></div><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56"/></svg></div>
+        <span class="eyebrow">Application received</span>
+        <h2 id="done-title" tabindex="-1">Welcome, <em id="done-name">friend</em>.</h2>
+        <p class="lead">Your application is in. The Executive Board reviews every application personally. Once approved, you'll get a welcome email at <b id="done-email"></b>. Then sign in to the Member Portal with that same email — no password needed.</p>
+        <div class="steps done"><div class="on"><b>✓</b><span>Applied</span></div><div><b>02</b><span>E-board review</span></div><div><b>03</b><span>Welcome email</span></div><div><b>04</b><span>Portal access</span></div></div>
+        <div class="dctas"><a class="btn solid" href="https://members.usjlps.org">Go to the Member Portal <span class="arr"></span></a><a class="btn ghost" href="https://instagram.com/usjlps" target="_blank" rel="noopener">Follow @usjlps</a></div>
+        <p class="dnote">The portal opens for you as soon as the E-Board approves your application. Add it to your phone’s home screen from <b>Get the App</b>. &nbsp;·&nbsp; <a href="/">Back to the site</a></p>
+      </div>
+    </section>
+  </div>
+</main>
+<footer class="jf"><div class="wrap"><span>© 2026 USJ Leadership &amp; Professional Society</span><span>Questions? <a href="https://instagram.com/usjlps" target="_blank" rel="noopener">@usjlps</a></span></div></footer>
+<script src="/assets/join.js?v=2" defer></script>
+</body></html>

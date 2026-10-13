@@ -1,0 +1,9 @@
+Campus photograph: University of Saint Joseph official website.
+Source: https://www.usj.edu/wp-content/uploads/2020/06/Contact-Ribbon-1920-x-920.jpg
+Used as the USJ campus image, not an LPS meeting photograph.
+Source file converted to WebP, no invented campus or photo content.
+Confirm institutional permission/credit requirements before public deployment.
+
+LPS marks and typefaces retained from the existing site assets.
+Portal screenshots: locally rendered actual LPS Member Portal UI;
+synthetic demonstration account; no member's personal data was used.

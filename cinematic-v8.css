@@ -1,0 +1,29 @@
+/* A single university photograph is reframed as a slow, scroll-led camera move. */
+html.intro-on .opening-journey{height:215svh}
+html.intro-on .hero{isolation:isolate}
+html.intro-on .hero-people{background-position:49% 58%;transform:scale(var(--people-scale,1.04)) translate3d(var(--people-x,0%),var(--people-y,0%),0);transform-origin:53% 48%}
+html.intro-on .hero-campus{background-position:50% 44%;transform:scale(var(--campus-scale,1.34)) translate3d(var(--campus-x,0%),var(--campus-y,0%),0);transform-origin:50% 38%}
+html.intro-on .hero-shade{background:linear-gradient(90deg,rgba(9,10,9,.91) 0%,rgba(9,10,9,.76) 45%,rgba(9,10,9,.27) 100%),linear-gradient(0deg,rgba(9,10,9,.8),transparent 53%,rgba(9,10,9,.16));opacity:var(--shade-opacity,1)}
+html.intro-on .hero:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 70% 65%,rgba(214,181,107,.17),transparent 53%),linear-gradient(90deg,transparent 0%,rgba(221,190,126,.08) 47%,transparent 70%);opacity:var(--light-opacity,0);transform:translateX(var(--light-x,15%));will-change:opacity,transform}
+html.intro-on .hero-copy{z-index:3;transform:translateY(calc(-50% + var(--copy-lift,0px))) scale(var(--copy-scale,1));transform-origin:left center}
+html.intro-on .journey-message{z-index:4;top:50%;opacity:var(--message-opacity,0);transform:translateY(calc(-50% + var(--message-lift,35px)));max-width:1000px}
+html.intro-on .journey-title{line-height:.97;letter-spacing:-.065em;font-size:clamp(64px,7.7vw,120px);text-shadow:0 3px 30px #0005}
+html.intro-on .journey-kicker span{width:var(--line-width,35px);transition:none}
+html.intro-on .hero-edge,.intro-on .hero-caption{opacity:var(--edge-opacity,1);transition:none}
+.hero-scroll-label{display:inline-flex;align-items:center;gap:18px}.hero-scroll-label span{font-size:16px;color:#d7b66e}
+@media(max-width:650px){html.intro-on .opening-journey{height:200svh}html.intro-on .hero-people{background-position:50% 53%}html.intro-on .hero-campus{background-position:50% 45%}html.intro-on .journey-title{font-size:clamp(40px,10vw,56px)}.hero-scroll-label{gap:8px}}
+@media(prefers-reduced-motion:reduce){.hero-scroll-label{display:none}.hero:after{display:none}}
+/* The second chapter is an editorial graphic, not a repeated campus photo. */
+.chapter-bg{background:radial-gradient(ellipse at 78% 54%,#514325 0%,#24251c 37%,#121410 75%);filter:none}
+.chapter-graphic{position:absolute;right:8%;top:50%;transform:translateY(-50%);width:min(38vw,490px);aspect-ratio:1;display:grid;place-items:center;color:#dfc589}
+.chapter-ring{width:100%;height:100%;border:1px solid #d7b66e88;border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative}
+.chapter-ring:before,.chapter-ring:after{content:"";position:absolute;inset:16px;border:1px solid #d7b66e39;border-radius:50%}.chapter-ring:after{inset:32px;border-color:#d7b66e25}
+.chapter-ring span,.chapter-ring small{font-size:10px;line-height:1.7;letter-spacing:.18em}.chapter-ring b{font:400 clamp(100px,13vw,185px)/1 Corm,Georgia,serif;letter-spacing:-.08em;margin:14px 10px 16px 0}.chapter-ring small{font-size:8px;color:#bcae91}
+.chapter-overlay{background:linear-gradient(90deg,rgba(8,9,8,.80),rgba(8,9,8,.17) 75%),linear-gradient(0deg,#0b0c0b55,transparent 65%)}
+/* Alternate adjacent sections to keep the path and rank explanation distinct. */
+.v5-ranks{background:#202019;color:#f0eddf;padding-top:100px}
+.v5-ranks .section-top{border-color:#ffffff36;color:#b7ac91}.v5-ranks .gold{color:#d7b66e}.v5-ranks h2 i{color:#d7b66e}.v5-ranks-head>p{color:#c0bdb0}.v5-rank-grid{border-color:#ffffff40}.v5-rank-grid article+article{border-color:#ffffff30}.v5-rank-grid article>span{color:#d7b66e}.v5-rank-grid p,.v5-rank-bottom p{color:#c0bdb0}.v5-rank-bottom .under-link{color:#e3d8bb}
+@media(max-width:900px){.v5-rank-grid article:nth-child(3),.v5-rank-grid article:nth-child(4){border-top-color:#ffffff30}}
+@media(max-width:650px){.v5-ranks{padding-top:72px}.chapter-graphic{width:85vw;right:-30%;opacity:.4}.chapter-ring span,.chapter-ring small{font-size:7px}.chapter-ring b{font-size:100px}.chapter-overlay{background:linear-gradient(90deg,rgba(8,9,8,.90),rgba(8,9,8,.35)),linear-gradient(0deg,#0b0c0b55,transparent 65%)}}
+
+@media(max-width:650px){.chapter-ring span,.chapter-ring b,.chapter-ring small{display:none}}

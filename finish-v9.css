@@ -1,0 +1,8 @@
+/* Make figures enter as the visitor reaches the section. */
+.stats-js .v5-stats-list>div{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.stats-js .v5-stats-list.is-visible>div{opacity:1;transform:none}.stats-js .v5-stats-list>div:nth-child(2){transition-delay:.12s}.stats-js .v5-stats-list>div:nth-child(3){transition-delay:.24s}
+.stats-status{min-height:1.6em}.v5-stats-list strong{font-variant-numeric:tabular-nums}
+/* One uncropped, legible representation of the actual portal interface. */
+.portal-art{display:flex;align-items:center;justify-content:center;padding:60px 36px 90px}.portal-orbit{width:min(75%,530px);left:50%;top:50%;transform:translate(-50%,-50%);border-color:#e1c68b43}.portal-device{position:relative;width:min(56%,270px);border:1px solid #756a4f;border-radius:29px;padding:9px 7px 7px;background:#090a09;box-shadow:0 22px 65px #0009,0 0 0 4px #0e100e;z-index:1;overflow:hidden}.portal-device img{width:100%;height:auto;border-radius:17px}.device-top{height:12px;display:flex;align-items:center;justify-content:center}.device-top span{display:block;width:34px;height:3px;border-radius:4px;background:#4c4b40}.portal-art>span{z-index:2}
+@media(max-width:650px){.portal-art{height:590px;padding:38px 24px 70px}.portal-device{width:min(66%,230px)}.portal-orbit{width:min(90%,450px)}}
+@media(prefers-reduced-motion:reduce){.stats-js .v5-stats-list>div{opacity:1;transform:none;transition:none}}
